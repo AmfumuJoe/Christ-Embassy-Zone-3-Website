@@ -1,6 +1,6 @@
 /* Christ Embassy Zone 3 website*/
   
-/*h1 {margin-top:1rem;}
+h1 {margin-top:1rem;}
 .home-image { 
 	background:url(../images/Code-Raba-min.jpg) no-repeat;background-size:auto;}
 .blue_mark {
@@ -8,7 +8,7 @@ margin-top:15rem;
 margin-right:2rem;
 padding:1rem;
 color:#fff;
-}*/
+}
 .blue_mark {
 -webkit-text-shadow: 1px 1px rgba(0,0,0,0.75);
 -moz-text-shadow: 1px 1px rgba(0,0,0,0.75);
