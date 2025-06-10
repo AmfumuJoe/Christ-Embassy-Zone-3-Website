@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page with Comments</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 30px;
+            background: #000;
+            border-radius: 4px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .comment-section {
+            margin-top: 40px;
+        }
+
+        .comment-form {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .comment-form h3 {
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .comments-list {
+            margin-top: 20px;
+        }
+
+        .comment {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .comment-date {
+            color: #7f8c8d;
+        }
+
+        .comment-body {
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Video Title Goes Here</h1>
+        
+        <!-- Video Embed -->
+        <div class="video-container">
+            <!-- Replace with your actual video embed code -->
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        <!-- Comment Section -->
+        <div class="comment-section">
+            <div class="comment-form">
+                <h3>Leave a Comment</h3>
+                <form id="commentForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Your Comment</label>
+                        <textarea id="comment" name="comment" required></textarea>
+                    </div>
+                    <button type="submit">Post Comment</button>
+                </form>
+            </div>
+            
+            <div class="comments-list">
+                <h3>Comments (3)</h3>
+                
+                <!-- Sample Comment 1 -->
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-author">John Doe</span>
+                        <span class="comment-date">June 15, 2023</span>
+                    </div>
+                    <div class="comment-body">
+                        This is a great video! I learned so much from it. The explanations were clear and concise.
+                    </div>
+                </div>
+                
+                <!-- Sample Comment 2 -->
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-author">Jane Smith</span>
+                        <span class="comment-date">June 10, 2023</span>
+                    </div>
+                    <div class="comment-body">
+                        Could you make a follow-up video going deeper into the advanced topics? Thanks!
+                    </div>
+                </div>
+                
+                <!-- Sample Comment 3 -->
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-author">Alex Johnson</span>
+                        <span class="comment-date">May 28, 2023</span>
+                    </div>
+                    <div class="comment-body">
+                        The production quality is excellent. Keep up the good work!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basic form submission handling
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const commentText = document.getElementById('comment').value;
+            const date = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            if (name && commentText) {
+                addComment(name, date, commentText);
+                this.reset();
+            }
+        });
+        
+        function addComment(name, date, text) {
+            const commentsList = document.querySelector('.comments-list');
+            const commentCount = document.querySelector('.comments-list h3');
+            
+            // Create new comment element
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            commentDiv.innerHTML = `
+                <div class="comment-header">
+                    <span class="comment-author">${name}</span>
+                    <span class="comment-date">${date}</span>
+                </div>
+                <div class="comment-body">${text}</div>
+            `;
+            
+            // Insert new comment at the top
+            commentsList.insertBefore(commentDiv, commentsList.children[1]);
+            
+            // Update comment count
+            const count = document.querySelectorAll('.comment').length;
+            commentCount.textContent = `Comments (${count})`;
+        }
+    </script>
+</body>
+</html>
