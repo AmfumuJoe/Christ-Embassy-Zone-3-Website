@@ -101,6 +101,104 @@
 
 			<!-- Display the countdown timer in an element -->
 <p id="demo"></p>
+ <!-- Comment Section -->
+        <div class="comment-section">
+            <div class="comment-form">
+                <h3>Leave a Comment</h3>
+                <form id="commentForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Your Comment</label>
+                        <textarea id="comment" name="comment" required></textarea>
+                    </div>
+                    <button type="submit">Post Comment</button>
+                </form>
+            </div>
+            
+            <div class="comments-list">
+                <h3>Comments (3)</h3>
+                
+                <!-- Sample Comment 1 -->
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-author">John Doe</span>
+                        <span class="comment-date">June 15, 2023</span>
+                    </div>
+                    <div class="comment-body">
+                        This is a great video! I learned so much from it. The explanations were clear and concise.
+                    </div>
+                </div>
+                
+                <!-- Sample Comment 2 -->
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-author">Jane Smith</span>
+                        <span class="comment-date">June 10, 2023</span>
+                    </div>
+                    <div class="comment-body">
+                        Could you make a follow-up video going deeper into the advanced topics? Thanks!
+                    </div>
+                </div>
+                
+                <!-- Sample Comment 3 -->
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-author">Bro Alex Johnson Malawi South</span>
+                        <span class="comment-date">May 28, 2025</span>
+                    </div>
+                    <div class="comment-body">
+                        Thank You so much Pastor Ma, I have been Uplifted Gloooooory!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basic form submission handling
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const commentText = document.getElementById('comment').value;
+            const date = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            if (name && commentText) {
+                addComment(name, date, commentText);
+                this.reset();
+            }
+        });
+        
+        function addComment(name, date, text) {
+            const commentsList = document.querySelector('.comments-list');
+            const commentCount = document.querySelector('.comments-list h3');
+            
+            // Create new comment element
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            commentDiv.innerHTML = `
+                <div class="comment-header">
+                    <span class="comment-author">${name}</span>
+                    <span class="comment-date">${date}</span>
+                </div>
+                <div class="comment-body">${text}</div>
+            `;
+            
+            // Insert new comment at the top
+            commentsList.insertBefore(commentDiv, commentsList.children[1]);
+            
+            // Update comment count
+            const count = document.querySelectorAll('.comment').length;
+            commentCount.textContent = `Comments (${count})`;
+        }
+    </script>
 
 <script>console.clear();</script>
 			
